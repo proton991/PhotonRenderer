@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{5e72a513-9b37-4b25-8b67-112637f0749c}</ProjectGuid>
+    <RootNamespace>PhotonRenderer</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)build\</OutDir>
+    <IntDir>$(SolutionDir)build\Intermediate\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+    <TargetName>$(ProjectName)-$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\$(ProjectName)</OutDir>
+    <IntDir>$(SolutionDir)build\Intermediate\$(Platform)\$(Configuration)\$(ProjectName)</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;STBI_MSC_SECURE_CRT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Include;$(ProjectDir)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\Lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty;$(ProjectDir)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\Lib</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="3rdParty\glad.c" />
+    <ClCompile Include="3rdParty\tiny_gltf.cc" />
+    <ClCompile Include="3rdParty\tiny_obj_loader.cc" />
+    <ClCompile Include="Renderer\AABB.cpp" />
+    <ClCompile Include="Assets\Material.cpp" />
+    <ClCompile Include="Assets\Mesh.cpp" />
+    <ClCompile Include="Assets\Model.cpp" />
+    <ClCompile Include="Renderer\Skybox.cpp" />
+    <ClCompile Include="Assets\Texture.cpp" />
+    <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\Scene.cpp" />
+    <ClCompile Include="Engine\SimpleScene.cpp" />
+    <ClCompile Include="Graphics\MeshBuffer.cpp" />
+    <ClCompile Include="Graphics\Context.cpp" />
+    <ClCompile Include="Graphics\Framebuffer.cpp" />
+    <ClCompile Include="Graphics\Shader.cpp" />
+    <ClCompile Include="Graphics\UniformBuffer.cpp" />
+    <ClCompile Include="Graphics\VertexArray.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Renderer\BasicRenderer.cpp" />
+    <ClCompile Include="Renderer\RenderAPI.cpp" />
+    <ClCompile Include="Renderer\ShadowMap.cpp" />
+    <ClCompile Include="Systems\CameraSystem.cpp" />
+    <ClCompile Include="Platform\NativeInput.cpp" />
+    <ClCompile Include="Utils\AssetCache.cpp" />
+    <ClCompile Include="Utils\AssetLoader.cpp" />
+    <ClCompile Include="Utils\ShaderCache.cpp" />
+    <ClCompile Include="Utils\StopWatch.cpp" />
+    <ClCompile Include="Platform\NativeWindow.cpp" />
+    <ClCompile Include="Utils\GltfUtils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Renderer\AABB.hpp" />
+    <ClInclude Include="Renderer\Line.hpp" />
+    <ClInclude Include="Assets\Material.hpp" />
+    <ClInclude Include="Assets\Mesh.hpp" />
+    <ClInclude Include="Assets\Model.hpp" />
+    <ClInclude Include="Renderer\Skybox.hpp" />
+    <ClInclude Include="Assets\Texture.hpp" />
+    <ClInclude Include="Common\Base.hpp" />
+    <ClInclude Include="Engine\Engine.hpp" />
+    <ClInclude Include="Engine\RenderOption.hpp" />
+    <ClInclude Include="Engine\Scene.hpp" />
+    <ClInclude Include="Engine\SimpleScene.hpp" />
+    <ClInclude Include="Graphics\MeshBuffer.hpp" />
+    <ClInclude Include="Graphics\Context.hpp" />
+    <ClInclude Include="Graphics\Framebuffer.hpp" />
+    <ClInclude Include="Graphics\Shader.hpp" />
+    <ClInclude Include="Graphics\UniformBuffer.hpp" />
+    <ClInclude Include="Graphics\VertexArray.hpp" />
+    <ClInclude Include="Common\Logging.hpp" />
+    <ClInclude Include="Renderer\BasicRenderer.hpp" />
+    <ClInclude Include="Renderer\FrameInfo.hpp" />
+    <ClInclude Include="Renderer\RenderData.hpp" />
+    <ClInclude Include="Renderer\RenderAPI.hpp" />
+    <ClInclude Include="Renderer\ShadowMap.hpp" />
+    <ClInclude Include="Renderer\Vertex.hpp" />
+    <ClInclude Include="Systems\CameraSystem.hpp" />
+    <ClInclude Include="Platform\NativeInput.hpp" />
+    <ClInclude Include="Utils\AssetCache.hpp" />
+    <ClInclude Include="Utils\AssetLoader.hpp" />
+    <ClInclude Include="Utils\ShaderCache.hpp" />
+    <ClInclude Include="Utils\StopWatch.hpp" />
+    <ClInclude Include="Platform\NativeWindow.hpp" />
+    <ClInclude Include="Utils\GltfUtils.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Models\sun\scene.bin" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
