@@ -8,6 +8,9 @@ void SimpleScene::Init() {
   // setup skybox
   m_skybox = Skybox::Create("Data/Textures/barcelona.hdr", 2048);
   AddModel(ModelPaths[0]);
+  auto sphere = m_assetCache->RequestModel("Data/Models/sphere.obj");
+  sphere->Translate({0, 0, 10});
+  AddModel(sphere);
   LoadFloor();
   LoadLightModel();
 }
