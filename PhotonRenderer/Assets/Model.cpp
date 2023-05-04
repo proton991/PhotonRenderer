@@ -8,10 +8,11 @@ Model::Model(const std::string& name, const std::vector<Vertex>& vertices,
              const std::vector<GLuint>& indices)
     : m_name(name) {
   m_meshes.emplace_back(vertices, indices);
-  LOGI("Model {} loaded: {} vertices, {} indices", name, vertices.size(), indices.size());
+  LOGI("Model {}: {} vertices, {} indices", name, vertices.size(), indices.size());
 }
 
 Model::Model(const std::string& name, const std::vector<Vertex>& vertices) : m_name(name) {
+  LOGI("Model {}: {} vertices", name, vertices.size());
   m_meshes.emplace_back(vertices);
 }
 

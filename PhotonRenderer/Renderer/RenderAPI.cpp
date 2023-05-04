@@ -53,6 +53,10 @@ void RenderAPI::DrawMeshes(const std::vector<Mesh>& meshes) {
 
 void RenderAPI::DrawMesh(const Mesh& mesh) {
   mesh.vao->Bind();
-  glDrawElements(GL_TRIANGLES, mesh.numIndices, GL_UNSIGNED_INT, nullptr);
+  if (mesh.numIndices != 0) {
+    glDrawElements(GL_TRIANGLES, mesh.numIndices, GL_UNSIGNED_INT, nullptr);
+  } else {
+    glDrawArrays(GL_TRIANGLES, 0, mesh.numVertices);
+  }
 }
 }  // namespace photon

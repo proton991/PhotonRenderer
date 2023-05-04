@@ -52,6 +52,8 @@ Ref<Model> AssetLoader::LoadModelOBJ(const std::string& path) {
   }
   std::vector<Vertex> vertices;
   std::vector<uint32_t> indices;
+  auto bboxMin = glm::vec3(std::numeric_limits<float>::max());
+  auto bboxMax = glm::vec3(std::numeric_limits<float>::lowest());
   // For each vertex of each triangle
   for (unsigned int i = 0; i < positionIndices.size(); i++) {
 
@@ -65,10 +67,14 @@ Ref<Model> AssetLoader::LoadModelOBJ(const std::string& path) {
     glm::vec2 uv       = uvs[uvIndex - 1];
     glm::vec3 normal   = normals[normalIndex - 1];
 
+    bboxMin = glm::min(bboxMin, position);
+    bboxMax = glm::max(bboxMax, position);
     indices.emplace_back(vertices.size());
     vertices.emplace_back(position, uv, normal);
   }
-  return CreateRef<Model>(ExtractName(path), vertices, indices);
+  auto model = CreateRef<Model>(ExtractName(path), vertices);
+  model->SetAABB({bboxMin, bboxMax});
+  return model;
 }
 
 //Ref<Model> AssetLoader::LoadModelOBJ(const std::string& path) {

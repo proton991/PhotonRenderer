@@ -15,7 +15,7 @@ struct RenderOptions {
   bool showBackground{true};
   bool showAxis{false};
   bool showAABB{false};
-  bool showFloor{true};
+  bool showFloor{false};
   bool showLightModel{true};
   bool blur{false};
   bool sceneChanged{false};
