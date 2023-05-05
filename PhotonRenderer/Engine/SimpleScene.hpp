@@ -17,10 +17,10 @@ public:
 private:
   const char* FloorPath{"Data/Models/wood_floor/scene.gltf"};
   const char* LightModelPath{"Data/Models/sun/scene.gltf"};
-  std::vector<const char*> ModelNames{"Sponza"};
+  std::vector<const char*> ModelNames{"Starship"};
 
   std::vector<const char*> ModelPaths{
-      "Data/Models/Sponza/glTF/Sponza.gltf",
+      "Data/Models/Starship/Starship.obj",
   };
 };
 }  // namespace photon

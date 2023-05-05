@@ -16,6 +16,11 @@ struct AABB {
 
   void FillLinesData(Ref<Line>& data) const;
 
+  auto GetSize() {
+    diag = posMax - posMin;
+    return glm::length(diag);
+  }
+
   glm::vec3 posMin;
   glm::vec3 posMax;
   glm::vec3 diag;

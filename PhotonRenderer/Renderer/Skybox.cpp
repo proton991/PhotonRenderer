@@ -132,7 +132,7 @@ Skybox::Skybox(const std::vector<std::string>& face_paths) {
   //m_cube_texture = m_assetCache->RequestTexture("skybox1", face_paths);
 }
 
-Skybox::Skybox(const std::string& hdr_path, int resolution) : m_resolution(resolution) {
+Skybox::Skybox(const std::string& hdrPath, int resolution) : m_resolution(resolution) {
   // init asset cache
   m_assetCache = CreateUnique<util::AssetCache>();
 
@@ -156,7 +156,7 @@ Skybox::Skybox(const std::string& hdr_path, int resolution) : m_resolution(resol
                                 .attachmentsInfos = {baseColor}};
   m_envFBO = gl::Framebuffer::Create(envFboCI);
 
-  auto hdrTexture     = m_assetCache->RequestTexture(hdr_path);
+  auto hdrTexture     = m_assetCache->RequestTexture(hdrPath);
   auto& convertShader = m_shaderCache.at("equirectangular_converter");
 
   convertShader->Use();

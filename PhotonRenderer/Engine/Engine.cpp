@@ -7,6 +7,7 @@
 #include "Utils/StopWatch.hpp"
 #include "Utils/AssetCache.hpp"
 #include "Platform/NativeInput.hpp"  // include glfw after glad
+#include "Systems/GUISystem.hpp"
 using namespace photon::system;
 using namespace photon::platform;
 // clang-format on
@@ -15,15 +16,19 @@ namespace photon {
 void Engine::Initialize(const std::string& activeScene) {
   // setup window
   WindowConfig config{};
-  config.width         = 900;
+  config.width         = 1600;
   config.height        = 900;
   config.major_version = 4;
   config.minor_version = 5;
   config.resizable     = GL_TRUE;
-  config.title         = "OpenGL Renderer";
+  config.title         = "CourseWork3";
   m_window             = CreateRef<Window>(config);
 
-  m_options = CreateRef<RenderOptions>();
+  m_gui = GUISystem::Create(m_window->Handle());
+
+  m_options              = CreateRef<RenderOptions>();
+  m_options->lightType   = LightType::Spot;
+  m_options->rotateLight = true;
 
   // setup renderer
 
@@ -78,6 +83,8 @@ void Engine::Run() {
     m_camera->Update(deltaTime, m_options->rotateCamera);
 
     m_renderer->RenderFrame(frameInfo);
+
+    m_gui->Draw(m_options);
 
     if (m_options->sceneChanged) {
       LoadScene(m_options->selectedModel);

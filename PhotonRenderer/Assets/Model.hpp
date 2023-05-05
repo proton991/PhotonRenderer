@@ -20,6 +20,7 @@ public:
   void SetAABB(const AABB& aabb) { m_aabb = aabb; }
 
   [[nodiscard]] const AABB& GetAABB() const { return m_aabb; }
+  [[nodiscard]] AABB& GetAABB() { return m_aabb; }
 
   void Translate(const glm::vec3& targetPos);
   void Rotate(float angle);

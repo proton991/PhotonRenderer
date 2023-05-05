@@ -59,14 +59,14 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;STBI_MSC_SECURE_CRT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Include;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\Include;$(ProjectDir);$(SolutionDir)PhotonGUI</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\Lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\Lib;$(SolutionDir)Lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;PhotonGUI.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -87,7 +87,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\Lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\Lib;$(SolutionDir)Lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -115,6 +115,7 @@
     <ClCompile Include="Renderer\ShadowMap.cpp" />
     <ClCompile Include="Systems\CameraSystem.cpp" />
     <ClCompile Include="Platform\NativeInput.cpp" />
+    <ClCompile Include="Systems\GUISystem.cpp" />
     <ClCompile Include="Utils\AssetCache.cpp" />
     <ClCompile Include="Utils\AssetLoader.cpp" />
     <ClCompile Include="Utils\ShaderCache.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Renderer\Vertex.hpp" />
     <ClInclude Include="Systems\CameraSystem.hpp" />
     <ClInclude Include="Platform\NativeInput.hpp" />
+    <ClInclude Include="Systems\GUISystem.hpp" />
     <ClInclude Include="Utils\AssetCache.hpp" />
     <ClInclude Include="Utils\AssetLoader.hpp" />
     <ClInclude Include="Utils\ShaderCache.hpp" />
@@ -159,6 +161,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Models\sun\scene.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotonGUI\PhotonGUI.vcxproj">
+      <Project>{c01b7dd5-5925-40fb-b508-f0ef788c2a5a}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

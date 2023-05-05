@@ -8,6 +8,7 @@
 
 namespace photon::system {
 class Camera;
+class GUISystem;
 }  // namespace photon::system
 
 namespace photon::util {
@@ -39,6 +40,8 @@ private:
   std::unordered_map<std::string, Ref<BaseScene>> m_sceneCache;
 
   Ref<system::Camera> m_camera;
+
+  Ref<system::GUISystem> m_gui;
 
   Ref<BasicRenderer> m_renderer;
 
