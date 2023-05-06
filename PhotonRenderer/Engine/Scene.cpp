@@ -22,15 +22,15 @@ void BaseScene::Update(const Ref<RenderOptions>& options, float time) {
   if (platform::KeyboardMouseInput::GetInstance().WasKeyPressedOnce(GLFW_KEY_L)) {
     SwitchLight();
   }
-  float rotation_angle = time * 0.5f;
+  float angle = time * 0.5f;
   if (options->rotateModel) {
     for (auto& model : m_models) {
-      model->Rotate(rotation_angle);
+      model->Rotate(angle);
     }
   }
   if (options->rotateLight) {
-    const auto point = glm::vec3(0.0, m_lightModel->GetAABB().GetCenter().y, 0.0f);
-    m_lightModel->Rotate(rotation_angle, point);
+    const auto point = glm::vec3(m_center.x, m_lightModel->GetAABB().GetCenter().y, m_center.z);
+    m_lightModel->Rotate(angle, point);
   }
 }
 

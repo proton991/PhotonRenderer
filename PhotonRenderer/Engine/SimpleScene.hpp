@@ -9,6 +9,7 @@ public:
   void LoadNewModel(uint32_t index) override;
   void LoadFloor() override;
   void LoadLightModel() override;
+  void GenerateTerrain() override;
   void Init() override;
 
   int GetNumModels() override { return ModelNames.size(); }

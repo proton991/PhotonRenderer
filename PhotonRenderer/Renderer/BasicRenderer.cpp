@@ -107,6 +107,10 @@ void BasicRenderer::SetupCoordinateAxis() {
   m_axisLine->vao->AttachVertexBuffer(vbo);
 }
 
+void BasicRenderer::RenderModel(const Ref<asset::Model>& model) {
+  RenderMeshes(model->GetMeshes());
+}
+
 void BasicRenderer::SetDefaultState() {
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LEQUAL);
@@ -161,7 +165,7 @@ void BasicRenderer::RenderScene(const FrameInfo& info) {
   }
   // render models
   for (const auto& model : info.scene->m_models) {
-    RenderMeshes(model->GetMeshes());
+    RenderModel(model);
     if (info.options->showAABB) {
       model->GetAABB().FillLinesData(m_aabbLine);
       m_shaderCache.at("lines")->Use();
@@ -169,15 +173,16 @@ void BasicRenderer::RenderScene(const FrameInfo& info) {
     }
   }
   if (info.options->showLightModel) {
-    RenderMeshes(info.scene->m_lightModel->GetMeshes());
+    RenderModel(info.scene->m_lightModel);
   }
   if (info.options->showFloor) {
-    RenderMeshes(info.scene->m_floor->GetMeshes());
+    RenderModel(info.scene->m_floor);
   }
   if (info.options->showAxis) {
     m_shaderCache.at("lines")->Use();
     RenderAPI::DrawLine(m_axisLine->vao, m_axisLine->lineVertices.size());
   }
+  info.scene->m_terrain->Draw(info.camera, info.scene->GetLightPos() - info.scene->GetCenter());
 }
 
 void BasicRenderer::RenderFrame(const FrameInfo& info) {

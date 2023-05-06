@@ -17,7 +17,7 @@ Ref<Camera> Camera::Create(const glm::vec3& bbox_min, const glm::vec3& bbox_max,
   const auto up     = glm::vec3(0, 1, 0);
   //  const auto eye    = diag.z > 0 ? center + 1.5f * diag : center + 2.f * glm::cross(diag, up);
   // place camera at the bbx corner
-  const auto eye   = 3.0f * glm::vec3(-bbox_max.x, bbox_max.y, bbox_max.z);
+  const auto eye   = glm::vec3(bbox_max.x, bbox_max.y, bbox_max.z);
   const auto speed = max_distance / 2;
   return CreateRef<Camera>(eye, center, fov, aspect, near, far, speed);
 }
@@ -34,7 +34,7 @@ Camera Camera::CreateDefault() {
 
 Camera Camera::CreateBasedOnBBox(const glm::vec3& bbox_min, const glm::vec3& bbox_max) {
   const auto diag   = bbox_max - bbox_min;
-  auto maxDistance = glm::length(diag);
+  auto maxDistance  = glm::length(diag);
   float near        = 0.001f * maxDistance;
   float far         = 100.f * maxDistance;
   float fov         = 70.0f;

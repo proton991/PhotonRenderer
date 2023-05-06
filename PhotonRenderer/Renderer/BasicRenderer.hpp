@@ -35,6 +35,7 @@ private:
   void SetupFramebuffers(uint32_t width, uint32_t height);
   void SetupCoordinateAxis();
 
+  void RenderModel(const Ref<asset::Model>& model);
   void RenderMeshes(const std::vector<asset::Mesh>& meshes);
   void RenderScene(const FrameInfo& info);
 

@@ -4,6 +4,7 @@
 #include "Common/Base.hpp"
 #include "RenderOption.hpp"
 #include "Renderer/Skybox.hpp"
+#include "Renderer/Terrain/Terrain.hpp"
 
 namespace photon {
 namespace util {
@@ -30,6 +31,7 @@ public:
   virtual void Init(){};
   virtual void LoadFloor(){};
   virtual void LoadLightModel(){};
+  virtual void GenerateTerrain(){};
   void AddModel(const std::string& model_name);
   void AddModel(const Ref<asset::Model>& model);
   virtual void LoadNewModel(uint32_t index) = 0;
@@ -45,6 +47,8 @@ public:
   auto HasSkybox() const { return m_skybox != nullptr; }
   const auto& GetName() const { return m_name; }
 
+  auto GetCenter() const { return m_center; }
+
   virtual int GetNumModels()          = 0;
   virtual const char** GetModelData() = 0;
 
@@ -55,8 +59,10 @@ protected:
   Ref<asset::Model> m_floor;
   Ref<asset::Model> m_lightModel;
   Ref<Skybox> m_skybox;
+  Ref<Terrain> m_terrain;
   glm::vec3 m_lightDir{-1.0f, -1.0f, -1.0f};
   glm::vec3 m_lightIntensity{1.0f};
   bool m_lightOn{true};
+  glm::vec3 m_center;
 };
 }  // namespace photon
