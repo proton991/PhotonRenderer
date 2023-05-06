@@ -157,6 +157,8 @@ void GeomipGrid::InitVertices(const Terrain* pTerrain, std::vector<Vertex>& Vert
     for (int x = 0; x < m_width; x++) {
       assert(Index < Vertices.size());
       Vertices[Index].InitVertex(pTerrain, x, z);
+      Vertices[Index].Pos.x -= (m_width - 1);
+      Vertices[Index].Pos.z -= (m_depth - 1);
       Index++;
     }
   }

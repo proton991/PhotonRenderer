@@ -6,7 +6,7 @@
 
 namespace photon {
 Terrain::Terrain(const TerrainCreateInfo& info) {
-  m_worldScale   = info.wordScale;
+  m_worldScale   = info.worldScale;
   m_textureScale = info.textureScale;
   m_terrainSize  = info.terrainSize;
   m_patchSize    = info.patchSize;
@@ -143,6 +143,9 @@ void Terrain::Draw(const Ref<system::Camera>& camera, const glm::vec3& lightDir)
       m_textures[i]->Bind(i);
     }
   }
+  double range = m_maxHeigt - m_minHeight;
+  double step  = range / 4.0;
+
   m_shader->SetUniform("gReversedLightDir", {1.0, 1.0f, 1.0f});
   m_shader->SetUniform("gMinHeight", m_minHeight);
   m_shader->SetUniform("gMaxHeight", m_maxHeigt);

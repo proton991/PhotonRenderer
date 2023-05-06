@@ -26,7 +26,7 @@ void ShadowMap::RunDepthPass(const Ref<BaseScene>& scene, const LightType& type)
   auto aabb_len    = glm::length(aabb.diag);
   // set near far plane
   m_near             = 0.01f * aabb_len;
-  m_far              = 100.0f * aabb_len;
+  m_far              = 10.0f * aabb_len;
   const auto box_len = aabb_len * 2;
 
   glm::mat4 lightViewMatrix{1.0f};

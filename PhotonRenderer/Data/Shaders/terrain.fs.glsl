@@ -12,11 +12,15 @@ layout (binding = 1) uniform sampler2D gTextureHeight1;
 layout (binding = 2) uniform sampler2D gTextureHeight2;
 layout (binding = 3) uniform sampler2D gTextureHeight3;
 
-uniform float gHeight0 = 80.0;
-uniform float gHeight1 = 110.0;
-uniform float gHeight2 = 150.0;
-uniform float gHeight3 = 180.0;
+//uniform float gHeight0 = -80.0;
+//uniform float gHeight1 = -110.0;
+//uniform float gHeight2 = -150.0;
+//uniform float gHeight3 = -180.0;
 
+uniform float gHeight0 = -180.0;
+uniform float gHeight1 = -150.0;
+uniform float gHeight2 = -110.0;
+uniform float gHeight3 = -80.0;
 uniform vec3 gReversedLightDir;
 
 vec4 CalcTexColor()

@@ -22,7 +22,7 @@ struct TerrainCreateInfo {
   float roughness;
   float minHeight;
   float maxHeigt;
-  float wordScale;
+  float worldScale;
   float textureScale;
   std::vector<std::string> textureFiles;
 };

@@ -9,6 +9,17 @@ void RenderAPI::EnableBlending(int sfactor, int dfactor) {
   glEnable(GL_BLEND);
   glBlendFunc(sfactor, dfactor);
 }
+
+void RenderAPI::EnableCullFace() {
+  // Enable face culling
+  glEnable(GL_CULL_FACE);
+  glCullFace(GL_BACK);  // Specify to cull the back faces
+}
+
+void RenderAPI::DisableCullFace() {
+  glDisable(GL_CULL_FACE);
+}
+
 void RenderAPI::SetClearColor(const glm::vec4& color) {
   glClearColor(color.r, color.g, color.b, color.a);
 }

@@ -23,6 +23,8 @@ public:
   static void EnableDepthTesting();
   static void DisableDepthTesting();
   static void EnableBlending(int sfactor, int dfactor);
+  static void EnableCullFace();
+  static void DisableCullFace();
 
   static void DrawLine(const std::shared_ptr<gl::VertexArray>& vao, uint32_t num_vertices);
   static void DrawVertices(const std::shared_ptr<VertexArray>& vao, uint32_t num_vertices);

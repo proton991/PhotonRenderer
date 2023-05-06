@@ -151,6 +151,9 @@ void BasicRenderer::RenderMeshes(const std::vector<Mesh>& meshes) {
 }
 
 void BasicRenderer::RenderScene(const FrameInfo& info) {
+  RenderAPI::EnableCullFace();
+  info.scene->m_terrain->Draw(info.camera, info.scene->GetLightPos() - info.scene->GetCenter());
+  RenderAPI::DisableCullFace();
   m_shadowMap->BindForRead(6);
   if (info.scene->HasSkybox()) {
     // bind Prefiltered IBL texture
@@ -182,7 +185,6 @@ void BasicRenderer::RenderScene(const FrameInfo& info) {
     m_shaderCache.at("lines")->Use();
     RenderAPI::DrawLine(m_axisLine->vao, m_axisLine->lineVertices.size());
   }
-  info.scene->m_terrain->Draw(info.camera, info.scene->GetLightPos() - info.scene->GetCenter());
 }
 
 void BasicRenderer::RenderFrame(const FrameInfo& info) {
