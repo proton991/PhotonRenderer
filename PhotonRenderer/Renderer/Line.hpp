@@ -3,12 +3,9 @@
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
 #include "Graphics/VertexArray.hpp"
+#include "Vertex.hpp"
 
 namespace photon {
-struct LineVertex {
-  glm::vec3 position;
-  glm::vec4 color;
-};
 
 struct Line {
   Line() = default;

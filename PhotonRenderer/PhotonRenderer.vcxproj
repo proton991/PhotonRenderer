@@ -99,6 +99,7 @@
     <ClCompile Include="Assets\Material.cpp" />
     <ClCompile Include="Assets\Mesh.cpp" />
     <ClCompile Include="Assets\Model.cpp" />
+    <ClCompile Include="Renderer\Curve.cpp" />
     <ClCompile Include="Renderer\Terrain\GeoMipGrid.cpp" />
     <ClCompile Include="Renderer\Terrain\LodManager.cpp" />
     <ClCompile Include="Renderer\Skybox.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="Common\Array2D.hpp" />
     <ClInclude Include="Common\Math.hpp" />
     <ClInclude Include="Renderer\AABB.hpp" />
+    <ClInclude Include="Renderer\Curve.hpp" />
     <ClInclude Include="Renderer\Terrain\GeoMipGrid.hpp" />
     <ClInclude Include="Renderer\Line.hpp" />
     <ClInclude Include="Assets\Material.hpp" />

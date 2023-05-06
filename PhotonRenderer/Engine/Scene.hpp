@@ -3,10 +3,12 @@
 #include "Assets/Model.hpp"
 #include "Common/Base.hpp"
 #include "RenderOption.hpp"
+#include "Renderer/Curve.hpp"
 #include "Renderer/Skybox.hpp"
 #include "Renderer/Terrain/Terrain.hpp"
 
 namespace photon {
+
 namespace util {
 class AssetCache;
 }
@@ -60,6 +62,7 @@ protected:
   Ref<asset::Model> m_lightModel;
   Ref<Skybox> m_skybox;
   Ref<Terrain> m_terrain;
+  Ref<Curve> m_curve;
   glm::vec3 m_lightDir{-1.0f, -1.0f, -1.0f};
   glm::vec3 m_lightIntensity{1.0f};
   bool m_lightOn{true};

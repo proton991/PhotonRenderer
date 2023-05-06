@@ -8,10 +8,11 @@ void SimpleScene::Init() {
   // setup skybox
   m_skybox = Skybox::Create("Data/Textures/sky.hdr", 2048);
   GenerateTerrain();
-  m_center = m_terrain->GetCenter();
+  //m_center = m_terrain->GetCenter();
 
   auto starship1 = m_assetCache->RequestModel("Data/Models/Starship/Starship.obj");
   auto ufo       = m_assetCache->RequestModel("Data/Models/ufo/scene.gltf");
+  auto robot     = m_assetCache->RequestModel("Data/Models/robot.obj");
 
   const auto modelSize = starship1->GetAABB().GetSize();
   //starship1->Translate({m_center.x, m_center.y * 1.1f, m_center.z});
@@ -22,8 +23,13 @@ void SimpleScene::Init() {
   //ufo->Translate({m_center.x, m_center.y * 1.1f + modelSize, m_center.z});
   ufo->Translate({0.0, modelSize, 0.0});
   AddModel(ufo);
+
+  robot->Scale(modelSize * 0.5 / robot->GetAABB().GetSize());
+  robot->Translate({0.0f, modelSize, 0.0f});
+  AddModel(robot);
   LoadFloor();
   LoadLightModel();
+  m_curve = CreateRef<Curve>();
 }
 
 void SimpleScene::LoadNewModel(uint32_t index) {

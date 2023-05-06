@@ -154,6 +154,7 @@ void BasicRenderer::RenderScene(const FrameInfo& info) {
   RenderAPI::EnableCullFace();
   info.scene->m_terrain->Draw(info.camera, info.scene->GetLightPos() - info.scene->GetCenter());
   RenderAPI::DisableCullFace();
+  info.scene->m_curve->Draw(info.camera);
   m_shadowMap->BindForRead(6);
   if (info.scene->HasSkybox()) {
     // bind Prefiltered IBL texture
