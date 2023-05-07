@@ -29,7 +29,7 @@ void BaseScene::Update(const Ref<RenderOptions>& options, float time) {
     }
   }
   if (options->rotateLight) {
-    const auto point = glm::vec3(m_center.x, m_lightModel->GetAABB().GetCenter().y, m_center.z);
+    const auto point = glm::vec3(0, m_lightModel->GetAABB().GetCenter().y, 0);
     m_lightModel->Rotate(angle, point);
   }
 }

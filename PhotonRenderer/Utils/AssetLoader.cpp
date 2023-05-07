@@ -73,96 +73,11 @@ Ref<Model> AssetLoader::LoadModelOBJ(const std::string& path) {
     vertices.emplace_back(position, uv, normal);
   }
   auto model = CreateRef<Model>(ExtractName(path), vertices);
+  model->GetSingleMeshMaterial().textures[asset::PBRComponent::BaseColor] =
+      LoadTexture("Data/Textures/white.png");
   model->SetAABB({bboxMin, bboxMax});
   return model;
 }
-
-//Ref<Model> AssetLoader::LoadModelOBJ(const std::string& path) {
-//  auto modelName = ExtractName(path);
-//  LOGE("Loading Model: {}", modelName);
-//  std::ifstream file(path);
-//  if (!file.is_open()) {
-//    if (file == NULL) {
-//      LOGE("Failed to open {}", path);
-//      return nullptr;
-//    }
-//  }
-//  std::vector<unsigned int> positionIndices, uvIndices, normalIndices;
-//  std::vector<glm::vec3> positions;
-//  std::vector<glm::vec2> uvs;
-//  std::vector<glm::vec3> normals;
-//
-//  FILE* file = fopen(path.c_str(), "r");
-//  if (file == NULL) {
-//    LOGE("Failed to open {}", path);
-//    return nullptr;
-//  }
-//
-//  while (1) {
-//    char lineHeader[128];
-//    // read the first word of the line
-//    int res = fscanf(file, "%s", lineHeader);
-//    if (res == EOF)
-//      break;  // EOF = End Of File. Quit the loop.
-//
-//    if (strcmp(lineHeader, "v") == 0) {
-//      glm::vec3 position;
-//      fscanf(file, "%f %f %f\n", &position.x, &position.y, &position.z);
-//      positions.push_back(position);
-//    } else if (strcmp(lineHeader, "vt") == 0) {
-//      glm::vec2 uv;
-//      fscanf(file, "%f %f\n", &uv.x, &uv.y);
-//      uvs.push_back(uv);
-//    } else if (strcmp(lineHeader, "vn") == 0) {
-//      glm::vec3 normal;
-//      fscanf(file, "%f %f %f\n", &normal.x, &normal.y, &normal.z);
-//      normals.push_back(normal);
-//    } else if (strcmp(lineHeader, "f") == 0) {
-//      unsigned int positionIndex[3], uvIndex[3], normalIndex[3];
-//      int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &positionIndex[0], &uvIndex[0],
-//                           &normalIndex[0], &positionIndex[1], &uvIndex[1], &normalIndex[1],
-//                           &positionIndex[2], &uvIndex[2], &normalIndex[2]);
-//      if (matches != 9) {
-//        LOGE("Failed to parse file");
-//        fclose(file);
-//        return nullptr;
-//      }
-//      positionIndices.push_back(positionIndex[0]);
-//      positionIndices.push_back(positionIndex[1]);
-//      positionIndices.push_back(positionIndex[2]);
-//      uvIndices.push_back(uvIndex[0]);
-//      uvIndices.push_back(uvIndex[1]);
-//      uvIndices.push_back(uvIndex[2]);
-//      normalIndices.push_back(normalIndex[0]);
-//      normalIndices.push_back(normalIndex[1]);
-//      normalIndices.push_back(normalIndex[2]);
-//    } else {
-//      // Probably a comment, eat up the rest of the line
-//      char stupidBuffer[1000];
-//      fgets(stupidBuffer, 1000, file);
-//    }
-//  }
-//  std::vector<Vertex> vertices;
-//  std::vector<uint32_t> indices;
-//  // For each vertex of each triangle
-//  for (unsigned int i = 0; i < positionIndices.size(); i++) {
-//
-//    // Get the indices of its attributes
-//    unsigned int vertexIndex = positionIndices[i];
-//    unsigned int uvIndex     = uvIndices[i];
-//    unsigned int normalIndex = normalIndices[i];
-//
-//    // Get the attributes thanks to the index
-//    glm::vec3 position = positions[vertexIndex - 1];
-//    glm::vec2 uv       = uvs[uvIndex - 1];
-//    glm::vec3 normal   = normals[normalIndex - 1];
-//
-//    indices.emplace_back(vertices.size());
-//    vertices.emplace_back(position, uv, normal);
-//  }
-//  fclose(file);
-//  return CreateRef<Model>(modelName, vertices, indices);
-//}
 
 Ref<Model> AssetLoader::LoadModelGLTF(const std::string& path) {
   LOGI("Loading Model: {}", path);

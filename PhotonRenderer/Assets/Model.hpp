@@ -30,6 +30,8 @@ public:
   auto GetMeshSize() const { return m_meshes.size(); }
   auto GetName() const { return m_name; }
 
+  PBRMaterial& GetSingleMeshMaterial() { return m_meshes[0].material; }
+
 private:
   std::string m_name;
   std::vector<Mesh> m_meshes;
